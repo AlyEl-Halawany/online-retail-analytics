@@ -1,0 +1,35 @@
+# Online Retail II — Business Analytics Portfolio
+# Install with: pip install -r requirements.txt
+#
+# Python 3.11+ recommended. Some packages (prophet, lifetimes) have known
+# compatibility issues with Python 3.12+; fallbacks are documented in src/.
+
+# ── Core data stack ───────────────────────────────────────────────────────────
+pandas>=2.0.0
+numpy>=1.26.0
+pyarrow>=14.0.0          # for fast parquet I/O
+
+# ── Visualisation ─────────────────────────────────────────────────────────────
+matplotlib>=3.7.0
+seaborn>=0.13.0
+
+# ── Machine learning ──────────────────────────────────────────────────────────
+scikit-learn>=1.3.0
+
+# ── Time-series forecasting ───────────────────────────────────────────────────
+# Primary: Prophet (may require separate C++ build tools on Windows)
+# prophet>=1.1.5
+# Fallback (used if Prophet cannot be installed): statsmodels SARIMAX
+statsmodels>=0.14.0
+
+# ── Customer Lifetime Value ───────────────────────────────────────────────────
+# Primary: lifetimes (BG/NBD + Gamma-Gamma probabilistic model)
+# lifetimes>=0.7.1
+# Fallback: implemented from scratch in src/clv.py if lifetimes unavailable
+
+# ── Jupyter ───────────────────────────────────────────────────────────────────
+jupyter>=1.0.0
+nbconvert>=7.0.0
+
+# ── Utilities ─────────────────────────────────────────────────────────────────
+tqdm>=4.65.0             # progress bars for long-running operations

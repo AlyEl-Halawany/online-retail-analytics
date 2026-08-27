@@ -1,0 +1,2 @@
+# Keep these directories tracked even when empty
+# (Git doesn't track empty directories)

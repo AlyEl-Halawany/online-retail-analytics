@@ -1,0 +1,42 @@
+# ── Raw data (too large to commit, ~90MB) ──────────────────────────────────────
+data/raw/
+
+# ── Processed parquet files (can be regenerated from raw) ─────────────────────
+# Keep processed CSVs (small) but ignore large parquets if needed
+data/processed/*.parquet
+
+# ── Model artifacts (potentially large binaries) ──────────────────────────────
+models/*.pkl
+models/*.joblib
+models/*.h5
+
+# ── Python artifacts ──────────────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# ── Jupyter checkpoints ───────────────────────────────────────────────────────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+
+# ── Virtual environments ──────────────────────────────────────────────────────
+.venv/
+venv/
+env/
+
+# ── OS noise ──────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── IDE noise ─────────────────────────────────────────────────────────────────
+.vscode/
+.idea/
+
+# ── Power BI (large binary — committed separately or shared via OneDrive) ──────
+app/*.pbix
