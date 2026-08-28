@@ -218,4 +218,4 @@ Add to every page via **Sync Slicers** (View → Sync Slicers):
 
 1. Save as `app/online_retail_dashboard.pbix`
 2. Publish to Power BI Service (optional — requires Power BI Pro or free trial)
-3. Share the link or export key pages as PDF for portfolio embedding
+3. Share the link or export key pages as PDF for documentation

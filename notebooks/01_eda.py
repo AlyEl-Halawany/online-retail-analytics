@@ -46,7 +46,7 @@ import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import seaborn as sns
 
-# Style: clean, readable plots that look good in a portfolio
+# Style: clean, consistent plot aesthetics throughout
 plt.rcParams.update({
     "figure.dpi": 120,
     "figure.facecolor": "white",

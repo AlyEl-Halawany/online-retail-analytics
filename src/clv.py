@@ -173,7 +173,7 @@ def train_clv_model(X_train: pd.DataFrame, y_train: pd.Series) -> RandomForestRe
     WHY NOT XGBoost / LightGBM?
     ----------------------------
     Random Forest is simpler to explain and has fewer hyperparameters to tune.
-    For a portfolio project where explainability matters, the marginal performance
+    For this use case where explainability matters, the marginal performance
     gain from gradient boosting is not worth the added complexity.
     We include a GradientBoostingRegressor as a comparison point.
     """

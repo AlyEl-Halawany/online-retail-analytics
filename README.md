@@ -1,6 +1,6 @@
-# Online Retail II — Business Analytics Portfolio
+# Online Retail II — Customer Analytics
 
-> **End-to-end customer analytics project** — RFM segmentation, Customer Lifetime Value prediction, sales forecasting, and cohort retention analysis on ~1M retail transactions.
+> Customer analytics project — RFM segmentation, Customer Lifetime Value prediction, sales forecasting, and cohort retention analysis on ~1M retail transactions from a UK-based online retailer.
 
 [![Python](https://img.shields.io/badge/Python-3.11%2B-blue)](https://python.org)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
