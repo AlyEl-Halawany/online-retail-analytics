@@ -33,3 +33,6 @@ nbconvert>=7.0.0
 
 # ── Utilities ─────────────────────────────────────────────────────────────────
 tqdm>=4.65.0             # progress bars for long-running operations
+
+dash>=2.0
+plotly>=5.0
