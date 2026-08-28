@@ -65,33 +65,44 @@ from pathlib import Path
 
 SEGMENT_RULES = [
     # Champions: recent, frequent, high-spend. The crown jewels.
-    ("Champions",          lambda r: (r.R >= 4) & (r.F >= 4) & (r.M >= 4)),
+    ("Champions",           lambda r: (r.R >= 4) & (r.F >= 4) & (r.M >= 4)),
 
     # Loyal Customers: frequent + high-spend, even if not super-recent.
     # These are repeat buyers who form the backbone of the business.
-    ("Loyal Customers",    lambda r: (r.F >= 3) & (r.M >= 3)),
+    ("Loyal Customers",     lambda r: (r.F >= 3) & (r.M >= 3)),
 
-    # Potential Loyalists: recent first/second-time buyers with some spend.
+    # Potential Loyalists: recent, low-frequency, decent spend.
     # The conversion opportunity — get them to a 3rd purchase.
-    ("Potential Loyalists",lambda r: (r.R >= 4) & (r.F <= 2) & (r.M >= 2)),
+    ("Potential Loyalists", lambda r: (r.R >= 4) & (r.F <= 2) & (r.M >= 3)),
+
+    # Promising: mid-recency, low-frequency, decent spend.
+    # Second-time buyers who haven't yet formed a habit but show value.
+    ("Promising",           lambda r: (r.R == 3) & (r.F <= 2) & (r.M >= 3)),
 
     # New Customers: very recent, only 1 order, any spend level.
-    # Priority: onboarding experience and first repeat purchase.
-    ("New Customers",      lambda r: (r.R >= 4) & (r.F == 1)),
+    # Priority: onboarding and driving the second purchase.
+    ("New Customers",       lambda r: (r.R >= 4) & (r.F == 1)),
 
     # At Risk: used to buy frequently/spend well but have gone quiet.
     # High urgency — these represent significant revenue at risk.
-    ("At Risk",            lambda r: (r.R <= 2) & (r.F >= 3) & (r.M >= 3)),
+    ("At Risk",             lambda r: (r.R <= 2) & (r.F >= 3) & (r.M >= 3)),
 
-    # At Risk - Low Value: previously engaged but lower spend. Lower priority.
-    ("At Risk - Low Value",lambda r: (r.R <= 2) & (r.F >= 2)),
+    # At Risk - Low Value: previously engaged at low spend, now lapsing.
+    ("At Risk - Low Value", lambda r: (r.R <= 2) & (r.F >= 2)),
 
-    # Hibernating: low across all dimensions but still in the data.
-    # Low ROI to target — passive monitoring only.
-    ("Hibernating",        lambda r: (r.R <= 2) & (r.F <= 2) & (r.M <= 2)),
+    # About to Sleep: mid-recency, any frequency, low spend — fading.
+    # One light-touch re-engagement; if no response, accept churn.
+    ("About to Sleep",      lambda r: (r.R == 3) & (r.M <= 2)),
+
+    # Recent low-spenders: recent but haven't spent much yet.
+    # Monitor — may develop or may be opportunistic buyers.
+    ("Recent Low Spenders", lambda r: (r.R >= 4) & (r.M <= 2)),
+
+    # Hibernating: gone quiet and low value — low ROI to target.
+    ("Hibernating",         lambda r: (r.R <= 2) & (r.M <= 2)),
 ]
 
-# Catch-all for any customer who doesn't match the above rules
+# Catch-all — should now be near-zero (genuine edge cases only)
 DEFAULT_SEGMENT = "Needs Attention"
 
 
@@ -135,7 +146,25 @@ SEGMENT_ACTIONS = {
         "do not invest significant budget. If they don't respond, move to "
         "Hibernating and deprioritise."
     ),
+    "Promising": (
+        "Second-time buyers with decent basket size. Goal: trigger the 3rd purchase "
+        "within 60 days. Send a personalised product recommendation based on what "
+        "they've bought, with free shipping as the soft incentive. Do not discount — "
+        "they've already shown willingness to pay."
+    ),
+    "About to Sleep": (
+        "Fading engagement — mid-recency but low frequency and spend. One light-touch "
+        "email is warranted ('Here's what's new'). If no response, accept churn and "
+        "redirect budget to higher-potential segments."
+    ),
+    "Recent Low Spenders": (
+        "Recently active but low basket size — may be browsers, occasional buyers, "
+        "or value-hunters. Include in product discovery campaigns and curated "
+        "'popular under £20' newsletters. Monitor whether basket size grows over 2-3 orders "
+        "before investing in targeted outreach."
+    ),
     "Hibernating": (
+
         "Passive only. Include in quarterly newsletter but do not allocate "
         "dedicated campaign budget. Consider a low-cost 'We miss you' email "
         "once per year. Focus resources on higher-value segments."
