@@ -45,7 +45,7 @@ The analysis will be considered successful if it delivers:
 
 ## Constraints
 
-**Budget:** No new software licenses — analysis must use open-source tooling. Dashboard to be built in Power BI Desktop (already licensed).
+**Budget:** No new software licenses — analysis uses open-source tooling throughout. Interactive dashboard built with Plotly Dash (Python).
 
 **Timeline:** Initial findings due within 3 weeks; full interactive dashboard within 5 weeks.
 
